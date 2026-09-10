@@ -10,10 +10,14 @@ This is a **structural outline in pseudocode**. It does not compile, it does not
 
 See [`../Fa26-CSC582-Assignment1.pdf`](../Fa26-CSC582-Assignment1.pdf) for the full specification, especially §3 (choosing a language), §5 (the required class hierarchy), and §6 (project structure). [`../WALKTHROUGH.md`](../WALKTHROUGH.md) walks you through day-one setup.
 
+[`ARCHITECTURE.md`](ARCHITECTURE.md) draws the whole picture: what the starter gives you, what you
+build on top, and how the pieces compose. Read it before you start writing.
+
 ## What's here
 
 ```
 starter/
+  ARCHITECTURE.md               diagrams of the hierarchy - read this first
   source/
     FourBitAdder/
       FourBitAdder.pseudo         public entry point            (ADD YOUR CODE)

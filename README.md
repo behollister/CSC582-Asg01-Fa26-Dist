@@ -12,7 +12,7 @@ Then do [`WALKTHROUGH.md`](WALKTHROUGH.md) on day one. It takes half an hour and
 |---|---|
 | [`Fa26-CSC582-Assignment1.pdf`](Fa26-CSC582-Assignment1.pdf) | The assignment. Rubric first, then specification, policies, and how to submit. |
 | [`WALKTHROUGH.md`](WALKTHROUGH.md) | Day-one setup: verify the munger, make your repo, dry-run a bundle, prove your toolchain works. |
-| [`starter/`](starter/) | Pseudocode outline of the system — class hierarchy, file layout, worked test examples. **Not a submission; translate it into a real language.** |
+| [`starter/`](starter/) | Pseudocode outline of the system, plus [`ARCHITECTURE.md`](starter/ARCHITECTURE.md) diagramming the hierarchy. **Not a submission; translate it into a real language.** |
 | [`design/`](design/) | Where your UML class diagram and sequence diagrams go (rubric item 5). Must be plain text — Mermaid, PlantUML, or Graphviz. |
 | [`AI_USAGE.template.md`](AI_USAGE.template.md) | Rename to `AI_USAGE.md` in your repo and keep it current (rubric item 3). |
 | [`munger.py`](munger.py) | Run from your repo root to bundle your project into the single file you submit. Asks which submission it is. **Do not modify it.** |
