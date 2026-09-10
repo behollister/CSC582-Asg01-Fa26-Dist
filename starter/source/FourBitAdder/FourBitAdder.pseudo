@@ -1,0 +1,20 @@
+// FourBitAdder.pseudo  (public entry point)
+//
+// ADD YOUR CODE.
+//
+// This file is the public face of the system: the one thing code outside the
+// library should have to reach for. In your chosen language, that means the
+// public class/interface declaration lives here, and everything it is built
+// from lives in intern/ (see the assignment handout, section 6, for how each
+// language expresses that boundary).
+//
+// The shape of what you declare here:
+//
+//   inputs :  a[0..3] : BIT, b[0..3] : BIT, cin : BIT
+//   outputs:  sum[0..3] : BIT, cout : BIT
+//
+//   every setter recomputes sum and cout before returning - that is the
+//   AbstractDevice contract (handout, section 5)
+//
+// Four full-adders chained in ripple-carry order: the carry-out of bit i
+// feeds the carry-in of bit i+1, and the external cin feeds bit 0.

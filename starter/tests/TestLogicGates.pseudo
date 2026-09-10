@@ -1,0 +1,86 @@
+// TestLogicGates.pseudo
+//
+// PROVIDED as a worked example: this is the shape every test suite in your
+// project should take. Translate it into your language's real test framework
+// (GoogleTest, JUnit, pytest, Jest, xUnit, ...) - these must be REAL tests
+// that actually execute and actually pass, not prose.
+//
+// Two kinds of test appear here, and you owe both for every class you build:
+//   1. a construction test - a freshly built object starts in a known state
+//   2. an exhaustive truth-table test - every input combination is checked
+//
+// "Exhaustive" is meant literally. A 2-input gate has 4 rows; a full adder has
+// 8; a four-bit adder has 16 x 16 x 2 = 512. Loop over them - do not
+// hand-write 512 asserts, and do not spot-check a handful of "interesting"
+// cases.
+
+TEST SUITE LogicGatesTests
+
+    TEST "a newly constructed AND gate has all pins at zero"
+        gate <- NEW AND(1)
+        ASSERT gate.getIn1() EQUALS 0
+        ASSERT gate.getIn2() EQUALS 0
+        ASSERT gate.getOut() EQUALS 0
+    END TEST
+
+    TEST "a newly constructed NAND gate has all pins at zero"
+        gate <- NEW NAND(1)
+        ASSERT gate.getIn1() EQUALS 0
+        ASSERT gate.getIn2() EQUALS 0
+        ASSERT gate.getOut() EQUALS 0
+    END TEST
+
+    TEST "a newly constructed OR gate has all pins at zero"
+        gate <- NEW OR(1)
+        ASSERT gate.getIn1() EQUALS 0
+        ASSERT gate.getIn2() EQUALS 0
+        ASSERT gate.getOut() EQUALS 0
+    END TEST
+
+    TEST "AND gate satisfies its complete truth table"
+        gate <- NEW AND(1)
+        FOR EACH a IN [0, 1]
+            FOR EACH b IN [0, 1]
+                gate.setIn1(a)
+                gate.setIn2(b)
+                expected <- 1 IF (a IS 1 AND b IS 1) ELSE 0
+                ASSERT gate.getOut() EQUALS expected
+            END FOR
+        END FOR
+    END TEST
+
+    TEST "OR gate satisfies its complete truth table"
+        gate <- NEW OR(1)
+        FOR EACH a IN [0, 1]
+            FOR EACH b IN [0, 1]
+                gate.setIn1(a)
+                gate.setIn2(b)
+                expected <- 1 IF (a IS 1 OR b IS 1) ELSE 0
+                ASSERT gate.getOut() EQUALS expected
+            END FOR
+        END FOR
+    END TEST
+
+    TEST "NAND gate satisfies its complete truth table"
+        gate <- NEW NAND(1)
+        FOR EACH a IN [0, 1]
+            FOR EACH b IN [0, 1]
+                gate.setIn1(a)
+                gate.setIn2(b)
+                expected <- 0 IF (a IS 1 AND b IS 1) ELSE 1
+                ASSERT gate.getOut() EQUALS expected
+            END FOR
+        END FOR
+    END TEST
+
+    TEST "NAND with both inputs tied together behaves as NOT"
+        gate <- NEW NAND(1)
+        FOR EACH a IN [0, 1]
+            gate.setIn1(a)
+            gate.setIn2(a)
+            expected <- 0 IF a IS 1 ELSE 1
+            ASSERT gate.getOut() EQUALS expected
+        END FOR
+    END TEST
+
+END TEST SUITE

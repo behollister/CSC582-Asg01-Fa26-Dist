@@ -1,0 +1,85 @@
+// LogicGates.pseudo
+//
+// PROVIDED. Pseudocode for the three system primitives: AND, OR, NAND.
+// These are the ONLY classes in the entire system permitted to write real
+// boolean logic. Everything above them - Xor2, HalfAdder, FullAdder, and the
+// FourBitAdder itself - must be built by wiring instances of these three
+// together.
+//
+// You get NOT for free: NOT(x) == NAND(x, x), i.e. a NAND with both of its
+// input pins driven from the same signal.
+//
+// Each gate carries a small string id. It is not used by the logic; it exists
+// so that a gate can identify itself in debug output, which gets useful fast
+// once you have dozens of them wired together inside a four-bit adder.
+
+CLASS AND EXTENDS AbstractGate
+
+    PROTECTED FIELD id : STRING
+
+    CONSTRUCTOR AND(idNumber : INTEGER)
+        CALL SUPERCLASS CONSTRUCTOR
+        id <- idNumber + "AND"
+    END CONSTRUCTOR
+
+    PROTECTED OVERRIDE METHOD update() RETURNS NOTHING
+        IF in1 IS 1 AND in2 IS 1 THEN
+            out <- 1
+        ELSE
+            out <- 0
+        END IF
+    END METHOD
+
+    PROTECTED OVERRIDE METHOD repr() RETURNS STRING
+        RETURN "id: " + id + ", " + SUPERCLASS.repr()
+    END METHOD
+
+END CLASS
+
+
+CLASS NAND EXTENDS AbstractGate
+
+    PROTECTED FIELD id : STRING
+
+    CONSTRUCTOR NAND(idNumber : INTEGER)
+        CALL SUPERCLASS CONSTRUCTOR
+        id <- idNumber + "NAND"
+    END CONSTRUCTOR
+
+    PROTECTED OVERRIDE METHOD update() RETURNS NOTHING
+        IF in1 IS 1 AND in2 IS 1 THEN
+            out <- 0
+        ELSE
+            out <- 1
+        END IF
+    END METHOD
+
+    PROTECTED OVERRIDE METHOD repr() RETURNS STRING
+        RETURN "id: " + id + ", " + SUPERCLASS.repr()
+    END METHOD
+
+END CLASS
+
+
+CLASS OR EXTENDS AbstractGate
+
+    PROTECTED FIELD id : STRING
+
+    CONSTRUCTOR OR(idNumber : INTEGER)
+        CALL SUPERCLASS CONSTRUCTOR
+        id <- idNumber + "OR"
+    END CONSTRUCTOR
+
+    PROTECTED OVERRIDE METHOD update() RETURNS NOTHING
+        IF in1 IS 1 OR in2 IS 1 THEN
+            out <- 1
+        ELSE
+            out <- 0
+        END IF
+    END METHOD
+
+    PROTECTED OVERRIDE METHOD repr() RETURNS STRING
+        RETURN "id: " + id + ", " + SUPERCLASS.repr()
+    END METHOD
+
+END CLASS

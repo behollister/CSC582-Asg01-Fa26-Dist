@@ -1,0 +1,31 @@
+// FourBitAdder.pseudo  (implementation)
+//
+// ADD YOUR CODE.
+//
+// This is where the adder is actually assembled, and where every intermediate
+// class in the hierarchy belongs as well. Depending on your language you may
+// split these across several files in this same intern/ directory - that is
+// fine and encouraged; keep one class per file where your language prefers it.
+//
+// The classes you still owe (handout, section 5):
+//
+//   AbstractDevice   the abstract root: setting any input recomputes outputs
+//   Xor2             NOT + NOT + AND + AND + OR, built from primitives
+//   HalfAdder        1x Xor2 + 1x AND               -> Sum, Carry
+//   FullAdder        2x HalfAdder + 1x OR           -> Sum, Cout
+//   FourBitAdder     4x FullAdder, ripple carry     -> Sum[0..3], Cout
+//
+// Two things worth deciding early, because they shape everything above them:
+//
+//   1. How a composite device propagates change. When an input pin is set on
+//      the adder, the signal has to reach every gate it feeds, in dependency
+//      order, before any output is read. Solve this once in AbstractDevice
+//      rather than in each composite.
+//
+//   2. Whether your composition generalizes. A four-bit adder can be written
+//      as four copy-pasted stanzas or as one composition applied four times.
+//      Both pass the same tests. They are not equally good answers, and the
+//      difference will matter more than you expect.
+//
+// Remember the hard rule: real boolean logic appears ONLY inside the update()
+// of AND, OR, and NAND. Everything here is composition and wiring.

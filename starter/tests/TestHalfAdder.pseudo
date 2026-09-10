@@ -1,0 +1,21 @@
+// TestHalfAdder.pseudo
+//
+// ADD YOUR CODE. Real, running tests in your language's test framework.
+//
+// Owed here:
+//   - construction test (a new HalfAdder starts with every pin at 0)
+//   - the complete 4-row truth table: A, B -> Sum, Carry
+//
+//     A  B  | Sum  Carry
+//     0  0  |  0     0
+//     0  1  |  1     0
+//     1  0  |  1     0
+//     1  1  |  0     1
+//
+// Loop over the input combinations rather than writing the rows out by hand,
+// and check BOTH outputs on every row - a half-adder whose Carry is right and
+// whose Sum is wrong still passes a test that only looks at Carry.
+//
+// Test Xor2 separately, in its own suite, before you test the HalfAdder built
+// on top of it. When the four-bit adder misbehaves, you will want to know
+// which level of the hierarchy broke.

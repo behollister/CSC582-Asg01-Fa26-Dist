@@ -1,0 +1,71 @@
+// AbstractGate.pseudo
+//
+// PROVIDED. This is pseudocode, not any real language. Translate it into your
+// chosen OO language, keeping the file and folder layout it arrived in.
+//
+// AbstractGate is the abstract base for the three primitive gates. It owns the
+// two input pins and the one output pin, and it guarantees that setting either
+// input immediately recomputes the output via the abstract update() operation
+// that each concrete gate supplies.
+//
+// NOTE: as provided, AbstractGate does not derive from anything. Designing
+// AbstractDevice and retrofitting this class to derive from it is YOUR job
+// (handout, section 5).
+
+ABSTRACT CLASS AbstractGate
+
+    // --- state (visible to subclasses only) ---
+    PROTECTED FIELD in1  : BIT = 0      // input pin one
+    PROTECTED FIELD in2  : BIT = 0      // input pin two
+    PROTECTED FIELD out  : BIT = 0      // output pin
+
+    // --- construction ---
+    CONSTRUCTOR AbstractGate()
+        // no parameters; all three pins initialize to 0
+        in1 <- 0
+        in2 <- 0
+        out <- 0
+    END CONSTRUCTOR
+
+    VIRTUAL DESTRUCTOR AbstractGate()
+        // present so that deleting a gate through a base-class handle is safe
+        // in languages where that matters; a no-op elsewhere
+    END DESTRUCTOR
+
+    // --- setters: note that BOTH of these force a recompute ---
+    PUBLIC METHOD setIn1(value : BIT) RETURNS NOTHING
+        in1 <- value
+        CALL update()
+    END METHOD
+
+    PUBLIC METHOD setIn2(value : BIT) RETURNS NOTHING
+        in2 <- value
+        CALL update()
+    END METHOD
+
+    // --- accessors ---
+    PUBLIC METHOD getIn1() RETURNS BIT
+        RETURN in1
+    END METHOD
+
+    PUBLIC METHOD getIn2() RETURNS BIT
+        RETURN in2
+    END METHOD
+
+    PUBLIC METHOD getOut() RETURNS BIT
+        RETURN out
+    END METHOD
+
+    // --- the contract subclasses must fulfill ---
+    PROTECTED ABSTRACT METHOD update() RETURNS NOTHING
+        // Each concrete gate recomputes `out` from `in1` and `in2` here.
+        // This is the ONLY place in the entire system where real boolean
+        // logic is allowed to be written directly.
+
+    PROTECTED VIRTUAL METHOD repr() RETURNS STRING
+        // Human-readable pin state; handy while debugging, and a natural
+        // place for subclasses to prepend their own identity.
+        RETURN "in1: " + in1 + ", in2: " + in2 + ", out: " + out
+    END METHOD
+
+END CLASS

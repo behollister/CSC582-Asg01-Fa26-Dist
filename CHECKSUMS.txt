@@ -1,0 +1,25 @@
+# SHA-256 checksums for the CSC 582 Assignment #1 package.
+#
+# Verify every file in this package:      sha256sum -c CHECKSUMS.txt
+# Verify just the bundler:                sha256sum munger.py
+#
+# munger.py MUST match the digest below - it is checked when your submission
+# is graded. The other entries let you confirm you have an unmodified copy of
+# the package; it is expected and fine that your own working files diverge
+# from these as you do the assignment.
+d0ec5f84e8b05ae972fa124a088c2864cbc89548bba7f1fa2bf54d292ba90bfe  AI_USAGE.template.md
+0d9bee86c1fa07b408e35a1a75181026db5bec0faf07522f50f92a9ccc89d2ac  Fa26-CSC582-Assignment1.pdf
+3a47dbef6e999c9ad59fe3dd469b6da49608e599d15da846a82306b19ae111c2  README.md
+7d49289337dd87f74370292bcbad2e53810cdbc3df454cd6ead40958033a0970  WALKTHROUGH.md
+9a8e56d3c8ae8271787020f8e98ca11a6d274dcf1ac3e5e33678e32a07cf0f03  __pycache__/munger.cpython-314.pyc
+375f00e51cc0748ad616e5e70bb1ab04f19e022f42ae869864aeddd4a891740c  design/README.md
+ec6c0ea46ab0226f4bd67cc987fbcd299a3f4e1195f0da94c83f2fb33c5d868b  munger.py
+2ffbd1f976f670b6d29072da9e943abc1dd232dc51fa6ca6263a24c57bf19adb  starter/README.md
+1d597c9ef945cf1daa8ba2000f1254c7de975ac0a122b641b5533e9c9e7d83b1  starter/source/FourBitAdder/FourBitAdder.pseudo
+ffbc80a41a79719ab9d4de59080a0966fcd7e11bff320def956fbc1c5ad5a408  starter/source/FourBitAdder/intern/AbstractGate.pseudo
+d2808ab8f9c8cdbcf0d418af65a4500ddaf321ab948be775a02662bb42f83922  starter/source/FourBitAdder/intern/FourBitAdder.pseudo
+e83d032c4ee895a4e7fcea0a514f24160ebe5a8fd9e3414a87f5d4467bebc766  starter/source/FourBitAdder/intern/LogicGates.pseudo
+bcabbb9856ae2d2bb567985eb2e4fd55f74688d29dbd119147e2cb12bca833ca  starter/tests/TestFourBitAdder.pseudo
+77db07f3b51169ce0d8c422bc66b5371029a9e57e4351b3e2d9e503dc19c8a01  starter/tests/TestFullAdder.pseudo
+7e76e00b22ded2b3a99c101711490019fe4c354d6e91d962af15d41aa7642739  starter/tests/TestHalfAdder.pseudo
+0ae72b19c9fa0be0081977f16b419ea31342e4c278ab97da1914742f2c341acd  starter/tests/TestLogicGates.pseudo

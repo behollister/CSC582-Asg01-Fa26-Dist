@@ -1,0 +1,19 @@
+// TestFourBitAdder.pseudo
+//
+// ADD YOUR CODE. Real, running tests in your language's test framework.
+//
+// Owed here:
+//   - construction test
+//   - an exhaustive sweep: all 16 values of A, all 16 of B, both values of
+//     Cin - 512 cases - each checked against integer addition.
+//
+// The expectation, stated once:
+//
+//     FOR a IN 0..15
+//       FOR b IN 0..15
+//         FOR cin IN 0..1
+//           adder.setA(a); adder.setB(b); adder.setCin(cin)
+//           ASSERT (adder.getCout() * 16) + adder.getSum() EQUALS a + b + cin
+//
+// Note what this catches that a hand-picked set of cases would not: a broken
+// carry between bits 2 and 3 only shows up for particular operand pairs.

@@ -1,0 +1,20 @@
+// TestFullAdder.pseudo
+//
+// ADD YOUR CODE. Real, running tests in your language's test framework.
+//
+// Owed here:
+//   - construction test
+//   - the complete 8-row truth table: A, B, Cin -> Sum, Cout
+//
+//     A  B  Cin | Sum  Cout
+//     0  0   0  |  0     0
+//     0  0   1  |  1     0
+//     0  1   0  |  1     0
+//     0  1   1  |  0     1
+//     1  0   0  |  1     0
+//     1  0   1  |  0     1
+//     1  1   0  |  0     1
+//     1  1   1  |  1     1
+//
+// A clean way to express the expectation without restating the table: the
+// two-bit value (Cout, Sum) read as a number must equal A + B + Cin.
