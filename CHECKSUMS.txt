@@ -8,10 +8,9 @@
 # the package; it is expected and fine that your own working files diverge
 # from these as you do the assignment.
 d0ec5f84e8b05ae972fa124a088c2864cbc89548bba7f1fa2bf54d292ba90bfe  AI_USAGE.template.md
-0d9bee86c1fa07b408e35a1a75181026db5bec0faf07522f50f92a9ccc89d2ac  Fa26-CSC582-Assignment1.pdf
+71a853b48fb6670eda6b72a859030c8da052467409ce759b1e558134907f0a1d  Fa26-CSC582-Assignment1.pdf
 3a47dbef6e999c9ad59fe3dd469b6da49608e599d15da846a82306b19ae111c2  README.md
 7d49289337dd87f74370292bcbad2e53810cdbc3df454cd6ead40958033a0970  WALKTHROUGH.md
-9a8e56d3c8ae8271787020f8e98ca11a6d274dcf1ac3e5e33678e32a07cf0f03  __pycache__/munger.cpython-314.pyc
 375f00e51cc0748ad616e5e70bb1ab04f19e022f42ae869864aeddd4a891740c  design/README.md
 ec6c0ea46ab0226f4bd67cc987fbcd299a3f4e1195f0da94c83f2fb33c5d868b  munger.py
 2ffbd1f976f670b6d29072da9e943abc1dd232dc51fa6ca6263a24c57bf19adb  starter/README.md
