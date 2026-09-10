@@ -8,8 +8,8 @@
 # the package; it is expected and fine that your own working files diverge
 # from these as you do the assignment.
 d0ec5f84e8b05ae972fa124a088c2864cbc89548bba7f1fa2bf54d292ba90bfe  AI_USAGE.template.md
-eba44cb6b8d8964574bb2dfd1b5e39fdb54ff9e6c210f8092aeead4ec86fb6d7  Fa26-CSC582-Assignment1.pdf
-6b8cfef6643fd8bf2df5585b3b8ce15ddd6252249d12c7f61728dce90881e6f5  README.md
+73008d76e0bdfc532674af40d49c1e73e2363437e7afd3de2e241fb722494d0c  Fa26-CSC582-Assignment1.pdf
+7b7ff77afacd1b24938c5a668f64a4eb9b59182e3b535f2a215f7ca0f38873d9  README.md
 f3c8892adee23ce819abeff77fa22cce066e323525c10adca6a32328d9ad1b42  WALKTHROUGH.md
 af64f80f7babb24ea40eda38d7c124c90a54e65149f11339685741e17f8da8c9  design/README.md
 5aaae171f2ee60b3e65243858cfddf727db996bb21077604eddefd9dda93a3e6  munger.py
