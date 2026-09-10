@@ -11,9 +11,15 @@ Your UML class diagram and sequence diagrams go here. This is rubric item 5 (10%
 1. What happens when one input pin changes on a composite device — the cascade of `update()` calls down through the objects it's composed of.
 2. An addition end to end, including how a carry propagates from the low bit to the high bit.
 
-## Format
+## Format — required, not a preference
 
-Prefer plain text. [Mermaid](https://mermaid.js.org/) is recommended: it's diffable in git, renders natively in `.md` files on GitHub, and — importantly for this course — it travels inside your submission bundle as readable text. PlantUML works too. A drawing tool is acceptable, but a PNG/SVG export won't be readable inside the bundle (§10), so commit the source alongside it.
+**Your diagrams must be committed in a plain-text format:** [Mermaid](https://mermaid.js.org/) (recommended), PlantUML, or Graphviz.
+
+Your submission is a single text bundle (§10 of the handout). A diagram that exists only as a `.png`, `.jpg`, `.svg`, or `.drawio` file **cannot be read by anyone grading it** — the bundler lists such files by name and skips their contents. An image-only diagram scores nothing on this item, no matter how good it is.
+
+Drawing in a GUI tool is fine *provided you also commit a text version*. After running `munger.py`, check the `FILES NOT BUNDLED` section: if anything in `design/` is listed there, fix it before you submit.
+
+Mermaid is recommended because it's diffable in git, renders natively in `.md` files on GitHub, and travels inside the bundle as readable text.
 
 A Mermaid sequence diagram looks like this:
 

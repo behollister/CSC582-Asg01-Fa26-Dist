@@ -105,6 +105,10 @@ PROJECT STRUCTURE:                      <- your directory tree
     └── ...
 ========================================
 
+FILES NOT BUNDLED:                      <- images etc. - check your diagrams aren't here
+  (none - every file in the project was bundled)
+========================================
+
 SOURCE FILES:                           <- the contents of each file, in full
 
 --- START FILE: starter/source/FourBitAdder/intern/AbstractGate.pseudo ---
@@ -119,7 +123,11 @@ SOURCE FILES:                           <- the contents of each file, in full
 2. **Your files are actually in the `SOURCE FILES` section**, not just listed in the tree. The
    tree lists everything; only recognized file types get their contents bundled.
 3. **The digest at the top matches Step 0.**
-4. **Nothing enormous got swept in.** Build directories, `node_modules/`, and virtual environments
+4. **The `FILES NOT BUNDLED` section.** Anything listed there exists in your project but could not
+   be included as text — images, PDFs, drawing-tool exports. If one of your diagrams is on that
+   list, your instructor cannot see it and it will not be graded (§7 of the handout requires
+   plain-text diagram formats). Fix it and re-run.
+5. **Nothing enormous got swept in.** Build directories, `node_modules/`, and virtual environments
    are skipped automatically. Generated documentation directories (`doc/`, `docs/`) appear in the
    tree with a file count instead of being dumped — that's intentional, and it's how the grader
    sees you generated docs without the bundle filling up with HTML.

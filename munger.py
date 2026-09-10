@@ -17,6 +17,11 @@ produced it, and that digest is checked against the published one when your
 submission is graded. A modified munger is treated as a submission integrity
 problem, not a clever workaround.
 
+Files that are not readable as text - images, PDFs, drawing-tool exports - are
+listed by name under FILES NOT BUNDLED rather than included. A UML or sequence
+diagram that exists only as an image cannot be graded, so commit a plain-text
+version (Mermaid, PlantUML, or Graphviz) as well.
+
 It is still your responsibility to open the bundle and confirm your work is
 in it before you upload. If this script misses something your project needs
 included, email the instructor - do not edit the script.
@@ -112,6 +117,43 @@ def count_files(dir_path):
     return total
 
 
+def classify_files(root_dir):
+    """Walks the project once, splitting files into bundled and not-bundled.
+
+    Anything whose extension is not a known text type - images, PDFs, drawing-
+    tool files - cannot go into a text bundle. Those are reported by name and
+    size instead of being silently dropped, so a diagram that exists only as a
+    PNG is visible as a problem rather than as an absence.
+
+    @param root_dir the project root to walk
+    @return a (to_bundle, skipped) pair; to_bundle holds (path, relative path)
+            and skipped holds (relative path, size in bytes)
+    """
+    to_bundle, skipped = [], []
+
+    for current_dir, dirs, files in os.walk(root_dir):
+        # Modify dirs in-place to skip ignored and generated-docs directories
+        dirs[:] = sorted(d for d in dirs
+                         if not d.startswith('.') and d not in IGNORE_DIRS and d not in DOC_DIRS)
+
+        for file in sorted(files):
+            if file.startswith('.') or is_bundle(file):
+                continue
+            filepath = os.path.join(current_dir, file)
+            rel_path = os.path.relpath(filepath, root_dir)
+
+            if os.path.splitext(file)[1].lower() in ALLOWED_EXTENSIONS:
+                to_bundle.append((filepath, rel_path))
+            else:
+                try:
+                    size = os.path.getsize(filepath)
+                except OSError:
+                    size = 0
+                skipped.append((rel_path, size))
+
+    return to_bundle, skipped
+
+
 def self_digest():
     """SHA-256 of this script, so a grader can confirm it wasn't modified."""
     try:
@@ -181,6 +223,7 @@ def main():
     output_filename = f"{safe_id}_{safe_name}_{slug}_bundle.txt"
 
     root_dir = os.getcwd()
+    to_bundle, skipped = classify_files(root_dir)
 
     with open(output_filename, 'w', encoding='utf-8') as outfile:
         # 1. Write the metadata header
@@ -200,38 +243,51 @@ def main():
         outfile.write(generate_tree(root_dir))
         outfile.write("\n" + "=" * 40 + "\n\n")
 
-        # 4. Write the file contents
+        # 4. Say plainly what could NOT be bundled, so a missing deliverable is
+        #    visible rather than merely absent
+        outfile.write("FILES NOT BUNDLED:\n")
+        if skipped:
+            for rel_path, size in skipped:
+                outfile.write(f"  {rel_path:<52} {size / 1024:>8.1f} KB\n")
+            outfile.write(
+                "\nThese files are in the project but are not readable as text, so their\n"
+                "contents are not included. If a graded deliverable is listed above - a UML\n"
+                "or sequence diagram, for example - your instructor cannot see it. Commit a\n"
+                "plain-text version (Mermaid, PlantUML, or Graphviz) as well.\n")
+        else:
+            outfile.write("  (none - every file in the project was bundled)\n")
+        outfile.write("\n" + "=" * 40 + "\n\n")
+
+        # 5. Write the file contents
         outfile.write("SOURCE FILES:\n\n")
 
-        files_processed = 0
-        own_files = 0
-        for current_dir, dirs, files in os.walk(root_dir):
-            # Modify dirs in-place to skip ignored and generated-docs directories
-            dirs[:] = sorted(d for d in dirs
-                             if not d.startswith('.') and d not in IGNORE_DIRS and d not in DOC_DIRS)
+        for filepath, rel_path in to_bundle:
+            outfile.write(f"--- START FILE: {rel_path} ---\n")
+            try:
+                # errors='replace' prevents crashes on weird character encodings
+                with open(filepath, 'r', encoding='utf-8', errors='replace') as infile:
+                    outfile.write(infile.read())
+            except Exception as e:
+                outfile.write(f"[Error reading file: {e}]\n")
+            outfile.write(f"\n--- END FILE: {rel_path} ---\n\n")
 
-            for file in sorted(files):
-                ext = os.path.splitext(file)[1].lower()
-                if ext in ALLOWED_EXTENSIONS and not is_bundle(file):
-                    filepath = os.path.join(current_dir, file)
-                    rel_path = os.path.relpath(filepath, root_dir)
+    own_files = [r for _, r in to_bundle if r != os.path.basename(__file__)]
 
-                    outfile.write(f"--- START FILE: {rel_path} ---\n")
-                    try:
-                        # errors='replace' prevents crashes on weird character encodings
-                        with open(filepath, 'r', encoding='utf-8', errors='replace') as infile:
-                            outfile.write(infile.read())
-                    except Exception as e:
-                        outfile.write(f"[Error reading file: {e}]\n")
-                    outfile.write(f"\n--- END FILE: {rel_path} ---\n\n")
-                    files_processed += 1
-                    if os.path.abspath(filepath) != os.path.abspath(__file__):
-                        own_files += 1
-
-    print(f"\nBundled {files_processed} files, plus git history and project tree.")
+    print(f"\nBundled {len(to_bundle)} files, plus git history and project tree.")
     print(f"Output saved to: {output_filename}")
 
-    if own_files == 0:
+    if skipped:
+        print(f"\n{len(skipped)} file(s) could NOT be bundled (not readable as text):")
+        for rel_path, _ in skipped[:8]:
+            print(f"  {rel_path}")
+        if len(skipped) > 8:
+            print(f"  ... and {len(skipped) - 8} more")
+        if any(r.replace('\\', '/').startswith('design/') for r, _ in skipped):
+            print("\n  ^ Some of these are in design/. Diagrams submitted only as images")
+            print("    cannot be read by your instructor and will not be graded. Commit a")
+            print("    plain-text version (Mermaid, PlantUML, or Graphviz) as well.")
+
+    if not own_files:
         print("\nWARNING: this bundle contains none of your work - only munger.py itself.")
         print("Are you in your project's root directory, and do your files use")
         print("extensions this script knows about? Do not submit this bundle.")
