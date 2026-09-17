@@ -45,7 +45,7 @@ Two different reasons to run this:
 - **Individual work.** No teams this term.
 - **Any OO language**, as long as it actually builds, runs, and has an executing test suite. The starter is pseudocode precisely so no language is privileged — but pseudocode itself is not a deliverable.
 - **AI coding agents are allowed** during the week, and must be disclosed in `AI_USAGE.md`.
-- **The assignment culminates in an in-class session**: questions about what you submitted, then a two-hour extension task built on your own code, with AI assistance off. Together they're 25% of the grade.
+- **The assignment culminates in an in-class session**, 25% of the grade: ten questions about what you submitted, then two hours in which you *design* an extension of your own system — an architecture write-up plus a Mermaid class diagram and sequence diagram. **No implementation is asked for or graded there.** AI assistance off throughout, and every answer is checked against your submitted bundle.
 - **Submit by running `munger.py`** and uploading the resulting `.txt` through the matching Google Form. No GitHub account or hosted repo is required; a local git repo is (its history rides along in the bundle).
 - **Two submissions, two filenames, two forms:**
 
